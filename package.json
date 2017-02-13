@@ -1,5 +1,5 @@
 {
-  "name": "express",
+  "name": "topgit",
   "version": "1.0.0",
   "description": "working on structures express",
   "main": "index.js",
@@ -12,5 +12,8 @@
   },
   "author": "",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/Swatim94/structuredexpress#readme"
+  "homepage": "https://bitbucket.org/Swatim94/structuredexpress#readme",
+  "dependencies": {
+    "express": "^4.14.1"
+  }
 }
