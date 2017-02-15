@@ -9,11 +9,8 @@ $(document).ready(function()
 		    			$("#lr1").text("No input!!");		
 		    		else
 					{
-						$.get("http://localhost:8080/data?id="+$("#search").val(), function(data){  
-							// if(typeof(data)==string)
-							// 	$("#lr1").text("No Records found");
-							// else
-								$("#lr1").text("Name : "+data.name);
+						$.get("http://localhost:8080/api/student?id="+$("#search").val(), function(data){  
+							$("#lr1").text("Name : "+data.name);
 						});
 				   	 }
 				}
