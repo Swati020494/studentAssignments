@@ -14,6 +14,9 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/Swatim94/structuredexpress#readme",
   "dependencies": {
-    "express": "^4.14.1"
-  }
+    "express": "^4.14.1",
+    "sequelize": "^3.30.2"
+  },
+  "devDependencies": {},
+  "keywords": []
 }
