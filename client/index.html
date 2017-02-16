@@ -1,6 +1,7 @@
 <html>
 	<head>
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+		<script src="http://malsup.github.com/jquery.form.js"></script> 		
 		<link rel="shortcut icon" href="">
 		<script src="/js/main.js" type="text/javascript"></script>
 		<link rel="stylesheet" type="text/css" href="/css/style.css"> 
@@ -12,7 +13,16 @@
 </h1></header>
 
 <div id="main">
-<div id="search-main"><input type="text" class="search" id="search" placeholder="search(by language)"></div>
+	<div id="search-main"><br><br>
+		<input type="text" class="search" id="search" placeholder="search by id"><br><br>
+		<button id="show">Show</button><br><br>
+		<form id="queryform">
+			<input type="text" class="search" id="insertid" placeholder="enter id"><br><br>
+			<input type="text" class="search" id="name" placeholder="enter name"><br><br>
+			<input type="text" class="search" id="section" placeholder="enter section"><br><br>
+			<button id="submit">Submit</button>		
+</form>
+	</div>		
   </div>
 <label id="lr1"> </label>
 </body>
