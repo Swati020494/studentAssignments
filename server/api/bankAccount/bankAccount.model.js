@@ -1,6 +1,6 @@
 require('sequelize');
 var BankAccountData=function(connection,Sequelize){
-				var BankAccount=connection.define('bankaccount',{
+			return connection.define('bankaccount',{
 			id: {
 		        allowNull: false,
 		        autoIncrement: true,
@@ -23,10 +23,18 @@ var BankAccountData=function(connection,Sequelize){
 		      dateOfCreation: {
 		        type: Sequelize.DATE,
 		        allowNull: false,
-		      }
+		      }},
+		      {
+       		 classMethods: {
+                associate: function(table) {
+                var BankAccount = table.bankaccount;
+                var User = table.user;
+
+                User.hasMany(BankAccount);
+				BankAccount.belongsTo(User);
+                }
+        }
 		      
 		});
-		//connection.sync({force:true});
-		return BankAccount;
 }
 module.exports=BankAccountData;

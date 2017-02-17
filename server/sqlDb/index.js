@@ -1,14 +1,22 @@
-var Sequelize=require('sequelize');
+var path=require('path');
+var dbase=require('./../config/dbConn');
+require('sequelize');
+var db={};
+var models = ['user', 'bankAccount'];
+
 var database=function(){
-	var connection=new Sequelize('postdata','postgres','database',{
-			dialect:'postgres'
-			});
-	var User=require('./../api/user/user.model');
-	var BankAccount=require('./../api/bankAccount/bankAccount.model');
-	var user=User(connection,Sequelize);
-	var bankAccount=BankAccount(connection,Sequelize);
-	user.hasMany(bankAccount);
-	bankAccount.belongsTo(user);
-	connection.sync({force:true});
+			for(var i in models){
+			var model=require('./../api/'+models[i]+'/'+models[i]+'.model');
+			var table=model(dbase.connection,dbase.Sequelize);
+			db[table.name] = table;
+	}
+	
+		Object.keys(db).forEach(function(tableName) {
+		if ('associate' in db[tableName]) {
+			db[tableName].associate(db)
+		}
+		});
+
+	dbase.connection.sync({force:true});
 }
 module.exports=database;

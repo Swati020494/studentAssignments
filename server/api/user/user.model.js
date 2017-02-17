@@ -1,6 +1,7 @@
-require('sequelize');
 var UserData=function(connection,Sequelize){
-				var User=connection.define('user',{
+				console.log('model files');
+				var user= connection.define('user',{
+					//id,pwd,name,age,gender,adress,phone
 			id: {
 		        allowNull: false,
 		        autoIncrement: true,
@@ -30,9 +31,27 @@ var UserData=function(connection,Sequelize){
 		      phone:{
 		        type: Sequelize.ARRAY(Sequelize.BIGINT),
 		        allowNull: false,
-		      },
+		      }
+		},
+		{
+       		 classMethods: {
+                insert: function(data) {
+                	console.log(data);
+               	 this.create({
+							pwd :data.pwd ,
+							name :data.name ,
+							age :data.age ,
+							gender :data.gender ,
+							adress :data.adress ,
+							phone :data.phone 
+						}).then(function(user) {
+							console.log(user);
+					});
+
+               	 }
+       		 	}
+		      
 		});
-		//connection.sync({force:true});
-		return User;
+		return user;
 }
 module.exports=UserData;

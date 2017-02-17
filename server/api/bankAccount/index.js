@@ -1,35 +1,11 @@
-var Sequelize=require('sequelize');
-var BankAccountData=function(connection){
-				var BankAccount=connection.define('bankAccount',{
-			id: {
-		        allowNull: false,
-		        autoIncrement: true,
-		        primaryKey: true,
-		        type: Sequelize.INTEGER,
-		      },
-		      // userid: {
-		      //   allowNull: false,
-		      //   type: Sequelize.INTEGER,
-		      // },
-		      accountNo: {
-		        allowNull: false,
-		        //unique: true,
-		        type: Sequelize.BIGINT,
-		      },
-		      pwd: {
-		        allowNull: false,
-		        type: Sequelize.STRING,
-		      },
-		      typeofAccount: {
-		        type: Sequelize.ENUM('Savings', 'Current','Salary'),
-		        allowNull: false,
-		      },
-		      dateOfCreation: {
-		        type: Sequelize.DATE,
-		        allowNull: false,
-		      }
-		      
-		});
-		connection.sync();
-}
-module.exports=BankAccountData;
+var express=require('express');
+var router=express.Router();
+var controller=require('./bankAccount.controller');
+router.post('/',controller);
+
+//router.get('/search',controller.select);
+
+// router.post('/insert',function(req,res){
+// res.send({id:1});
+// });
+module.exports=router;
