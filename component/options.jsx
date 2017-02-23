@@ -12,6 +12,7 @@ class Optionsicons extends React.Component {
       jsondataSelectedfoodItem:[],
       key:1
     };
+    this.storeCart=this.storeCart.bind(this);
 
    }
    componentWillMount() {
@@ -39,8 +40,28 @@ class Optionsicons extends React.Component {
      });
     
   }
+  storeCart(data){
+  	var names=[];
+  	var storedNames = JSON.parse(localStorage.getItem("names"));
+  	console.log(storedNames);
+  	if(storedNames==null||storedNames==undefined){	
+  		names.push(data);
+  		localStorage.setItem("names", JSON.stringify(names));
+  	}
+  	else
+  	{
+  		storedNames.push(data);
+  		localStorage.setItem("names", JSON.stringify(storedNames));
+
+  	}
+  	console.log("data",data);
+  	window.location.reload();
+
+  }
+
   
     render() {
+    	var obj=this;
     return (
     <div id="left">
       <Grid>
@@ -48,10 +69,11 @@ class Optionsicons extends React.Component {
         	{
         	  this.state.jsondataSelectedfoodItem.map(function(jdata,i) {
       			return(<Col xs={6} md={3}>
-      				<Thumbnail src={jdata.food_item_pic} alt="242x200">
+      				<Thumbnail src={jdata.food_item_pic} alt="242x200" className="thumb">
         			<h3>{jdata.food_item_name}</h3>
        				<p>{jdata.food_item_short_desc}</p>
-      				<p><Button className="btn1"><Glyphicon glyph="plus-sign" /></Button>&nbsp;</p>
+      				<p className="btn1">${jdata.food_item_price}</p>
+      				<Button className="btn2" onClick={() => obj.storeCart(jdata)}><Glyphicon glyph="plus-sign"/></Button>&nbsp;
      			 	</Thumbnail>
       			</Col>);
         })
