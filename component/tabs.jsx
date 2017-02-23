@@ -1,38 +1,44 @@
 import React from 'react';
 import { Tabs,Tab } from 'react-bootstrap';
+import Optionsicons from './options.jsx'
+
 class OptionTab extends React.Component {
 	constructor(props) {
     super(props)
     this.props=props;
     this.state = {
-      jsondata: []
+      jsondatafoodGroup: [],
+      key:1
     };
     this.fetchData=this.fetchData.bind(this);
+    this.handleSelect=this.handleSelect.bind(this);
     this.fetchData();
 
    }
   fetchData(){
-    console.log("in fetchData--->");
     $.getJSON('http://ec2-54-165-240-14.compute-1.amazonaws.com:3000/api/foodGroup').then((data)=> {
-      console.log("data---------->",data[0].food_group_name);
       this.setState({
-      jsondata:data
+      jsondatafoodGroup:data
      });
-      console.log(this.state.jsondata);
     });
   }
-
-  render() {
+  handleSelect(key) {
+    alert('selected ' + key);
+    this.setState({key});
+    
+  }
+    render() {
     return (
     <div id="left">
-      <Tabs defaultActiveKey={1} id="uncontrolled-tab-example">
+      <Tabs defaultActiveKey={1} id="uncontrolled-tab-example" >
         {
-          this.state.jsondata.map(function(jdata,i) {
-          return (<Tab eventKey={i} key={i} title={jdata.food_group_name}></Tab>);
-        })
-      }
+          this.state.jsondatafoodGroup.map(function(jdata,i) {
+            return (<Tab eventKey={i} key={i}  title={jdata.food_group_name}><Optionsicons food_group_id={jdata.food_group_id}/></Tab>);
+            
+          })
+        }
       </Tabs>
-    </div>
+      </div>
   );
 }
 }
