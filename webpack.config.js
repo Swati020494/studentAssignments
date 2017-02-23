@@ -3,7 +3,7 @@ var config = {
 	
    output: {
       path:'/',
-      filename: '/home/swati/Desktop/INTERN/reactApp/public/bundle.js',
+      filename: 'index.js'
    },
 	
    devServer: {

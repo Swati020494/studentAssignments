@@ -1,23 +1,25 @@
 import React from 'react';
 import Format from './component/format.jsx'
+import OptionTab from './component/tabs.jsx'
 class App extends React.Component {
    constructor(props){
       super(props);
       this.state = {
-         value : ''
+         data : ''
       };
       this.result = this.result.bind(this);
    }
    result(response){
       this.setState({
-         value : response
+         data : response
       });
    }
    render() {
       return (
          <div>
-         <Format result={this.result}/>
-         <label>{this.state.value}</label>
+         <Format />
+         <OptionTab result={this.result}/>
+         <label>{this.state.data}</label>
          </div>
       );
    }

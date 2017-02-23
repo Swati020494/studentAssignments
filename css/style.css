@@ -1,0 +1,24 @@
+#wrapper {
+  width:100%;
+  height:15%;
+  text-align: center;
+  background-color: #E0E0E0;
+  padding-bottom: 0px;
+
+}
+#left {
+  width:100%;
+  height:15%;
+  text-align: center;
+  padding-bottom: 0px;
+
+}
+.btn1{
+  float: left;
+}
+.lbl{
+  font-size:22px;
+}
+.btn2{
+  float:right;
+}
