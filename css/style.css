@@ -6,6 +6,16 @@
   padding-bottom: 0px;
 
 }
+.includeborder{
+  border:1px;
+}
+.small-img{
+  height: 80px;
+  width:180px;
+}
+.dropbtn{
+  cursor: pointer;
+}
 .show-grid{
   height:250px;
 }
@@ -50,4 +60,8 @@ a {
 }
 .btn2{
   float:right;
+}
+.bn2{
+  float:right;
+  margin-right: 320px;
 }

@@ -28,12 +28,13 @@ class OptionTab extends React.Component {
     
   }
     render() {
+      var that=this
     return (
     <div id="left">
       <Tabs defaultActiveKey={1} id="uncontrolled-tab-example" >
         {
           this.state.jsondatafoodGroup.map(function(jdata,i) {
-            return (<Tab eventKey={i} key={i}  title={jdata.food_group_name}><Optionsicons food_group_id={jdata.food_group_id}/></Tab>);
+            return (<Tab eventKey={i} key={i}  title={jdata.food_group_name}><Optionsicons setCart={that.props.setCart} food_group_id={jdata.food_group_id}/></Tab>);
             
           })
         }
