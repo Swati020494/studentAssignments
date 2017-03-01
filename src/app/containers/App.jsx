@@ -1,7 +1,8 @@
 import React from "react";
 import { User } from '../components/User.jsx';
 import { Main } from '../components/Main.jsx';
-import {connect} from "react-redux"
+import {connect} from "react-redux";
+import {setName} from "../actions/userActions.jsx";
 class App extends React.Component {
       render() {
         return (
@@ -21,10 +22,7 @@ const mapStateToProps=(state)=>{
 const mapDispatchToProps=(dispatch)=>{
     return{
         setName:(name)=>{
-            dispatch({
-                type:"SET_NAME",
-                payload:name
-            });
+            dispatch(setName(name));
         }
     };
 };

@@ -51,22 +51,26 @@
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 1);
 	
-	var _App = __webpack_require__(/*! ./containers/App.jsx */ 177);
+	var _react = __webpack_require__(/*! react */ 177);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _App = __webpack_require__(/*! ./containers/App.jsx */ 178);
 	
 	var _App2 = _interopRequireDefault(_App);
 	
 	var _reactRedux = __webpack_require__(/*! react-redux */ 181);
 	
-	var _store = __webpack_require__(/*! ./store.jsx */ 219);
+	var _store = __webpack_require__(/*! ./store.jsx */ 220);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	(0, _reactDom.render)(React.createElement(
+	(0, _reactDom.render)(_react2.default.createElement(
 	    _reactRedux.Provider,
 	    { store: _store2.default },
-	    React.createElement(_App2.default, null)
+	    _react2.default.createElement(_App2.default, null)
 	), window.document.getElementById('app'));
 
 /***/ },
@@ -22024,6 +22028,18 @@
 
 /***/ },
 /* 177 */
+/*!**************************!*\
+  !*** ./~/react/react.js ***!
+  \**************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	module.exports = __webpack_require__(/*! ./lib/React */ 87);
+
+
+/***/ },
+/* 178 */
 /*!************************************!*\
   !*** ./src/app/containers/App.jsx ***!
   \************************************/
@@ -22037,7 +22053,7 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _react = __webpack_require__(/*! react */ 178);
+	var _react = __webpack_require__(/*! react */ 177);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
@@ -22046,6 +22062,8 @@
 	var _Main = __webpack_require__(/*! ../components/Main.jsx */ 180);
 	
 	var _reactRedux = __webpack_require__(/*! react-redux */ 181);
+	
+	var _userActions = __webpack_require__(/*! ../actions/userActions.jsx */ 219);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -22092,27 +22110,12 @@
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 	    return {
 	        setName: function setName(name) {
-	            dispatch({
-	                type: "SET_NAME",
-	                payload: name
-	            });
+	            dispatch((0, _userActions.setName)(name));
 	        }
 	    };
 	};
 	
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(App);
-
-/***/ },
-/* 178 */
-/*!**************************!*\
-  !*** ./~/react/react.js ***!
-  \**************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	module.exports = __webpack_require__(/*! ./lib/React */ 87);
-
 
 /***/ },
 /* 179 */
@@ -22128,7 +22131,7 @@
 	});
 	exports.User = undefined;
 	
-	var _react = __webpack_require__(/*! react */ 178);
+	var _react = __webpack_require__(/*! react */ 177);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
@@ -22182,7 +22185,7 @@
 	});
 	exports.Main = undefined;
 	
-	var _react = __webpack_require__(/*! react */ 178);
+	var _react = __webpack_require__(/*! react */ 177);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
@@ -22267,7 +22270,7 @@
 	exports.__esModule = true;
 	exports.default = undefined;
 	
-	var _react = __webpack_require__(/*! react */ 178);
+	var _react = __webpack_require__(/*! react */ 177);
 	
 	var _PropTypes = __webpack_require__(/*! ../utils/PropTypes */ 183);
 	
@@ -22354,7 +22357,7 @@
 	exports.__esModule = true;
 	exports.storeShape = exports.subscriptionShape = undefined;
 	
-	var _react = __webpack_require__(/*! react */ 178);
+	var _react = __webpack_require__(/*! react */ 177);
 	
 	var subscriptionShape = exports.subscriptionShape = _react.PropTypes.shape({
 	  trySubscribe: _react.PropTypes.func.isRequired,
@@ -22425,7 +22428,7 @@
 	
 	var _invariant2 = _interopRequireDefault(_invariant);
 	
-	var _react = __webpack_require__(/*! react */ 178);
+	var _react = __webpack_require__(/*! react */ 177);
 	
 	var _Subscription = __webpack_require__(/*! ../utils/Subscription */ 188);
 	
@@ -24597,6 +24600,33 @@
 
 /***/ },
 /* 219 */
+/*!*****************************************!*\
+  !*** ./src/app/actions/userActions.jsx ***!
+  \*****************************************/
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.setName = setName;
+	exports.setAge = setAge;
+	function setName(number) {
+		return {
+			type: "ADD",
+			payload: name
+		};
+	}
+	function setAge(number) {
+		return {
+			type: "SUBTRACT",
+			payload: age
+		};
+	}
+
+/***/ },
+/* 220 */
 /*!***************************!*\
   !*** ./src/app/store.jsx ***!
   \***************************/
@@ -24610,24 +24640,24 @@
 	
 	var _redux = __webpack_require__(/*! redux */ 192);
 	
-	var _reduxLogger = __webpack_require__(/*! redux-logger */ 220);
+	var _reduxLogger = __webpack_require__(/*! redux-logger */ 221);
 	
 	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
 	
-	var _mathReducer = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./reducers/mathReducer\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _mathReducer = __webpack_require__(/*! ./reducers/mathReducer.jsx */ 227);
 	
 	var _mathReducer2 = _interopRequireDefault(_mathReducer);
 	
-	var _userReducer = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./reducers/userReducer\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _userReducer = __webpack_require__(/*! ./reducers/userReducer.jsx */ 228);
 	
 	var _userReducer2 = _interopRequireDefault(_userReducer);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	exports.default = (0, _redux.createStore)((0, _redux.combineReducers)({ math: _mathReducer2.default, user: _userReducer2.default }), {}, (0, _redux.applyMiddleware)(myLogger, (0, _reduxLogger2.default)()));
+	exports.default = (0, _redux.createStore)((0, _redux.combineReducers)({ math: _mathReducer2.default, user: _userReducer2.default }), {}, (0, _redux.applyMiddleware)((0, _reduxLogger2.default)()));
 
 /***/ },
-/* 220 */
+/* 221 */
 /*!*************************************!*\
   !*** ./~/redux-logger/lib/index.js ***!
   \*************************************/
@@ -24641,11 +24671,11 @@
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	var _core = __webpack_require__(/*! ./core */ 221);
+	var _core = __webpack_require__(/*! ./core */ 222);
 	
-	var _helpers = __webpack_require__(/*! ./helpers */ 222);
+	var _helpers = __webpack_require__(/*! ./helpers */ 223);
 	
-	var _defaults = __webpack_require__(/*! ./defaults */ 225);
+	var _defaults = __webpack_require__(/*! ./defaults */ 226);
 	
 	var _defaults2 = _interopRequireDefault(_defaults);
 	
@@ -24748,7 +24778,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 221 */
+/* 222 */
 /*!************************************!*\
   !*** ./~/redux-logger/lib/core.js ***!
   \************************************/
@@ -24764,9 +24794,9 @@
 	
 	exports.printBuffer = printBuffer;
 	
-	var _helpers = __webpack_require__(/*! ./helpers */ 222);
+	var _helpers = __webpack_require__(/*! ./helpers */ 223);
 	
-	var _diff = __webpack_require__(/*! ./diff */ 223);
+	var _diff = __webpack_require__(/*! ./diff */ 224);
 	
 	var _diff2 = _interopRequireDefault(_diff);
 	
@@ -24893,7 +24923,7 @@
 	}
 
 /***/ },
-/* 222 */
+/* 223 */
 /*!***************************************!*\
   !*** ./~/redux-logger/lib/helpers.js ***!
   \***************************************/
@@ -24920,7 +24950,7 @@
 	var timer = exports.timer = typeof performance !== "undefined" && performance !== null && typeof performance.now === "function" ? performance : Date;
 
 /***/ },
-/* 223 */
+/* 224 */
 /*!************************************!*\
   !*** ./~/redux-logger/lib/diff.js ***!
   \************************************/
@@ -24933,7 +24963,7 @@
 	});
 	exports.default = diffLogger;
 	
-	var _deepDiff = __webpack_require__(/*! deep-diff */ 224);
+	var _deepDiff = __webpack_require__(/*! deep-diff */ 225);
 	
 	var _deepDiff2 = _interopRequireDefault(_deepDiff);
 	
@@ -25022,7 +25052,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 224 */
+/* 225 */
 /*!******************************!*\
   !*** ./~/deep-diff/index.js ***!
   \******************************/
@@ -25454,7 +25484,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 225 */
+/* 226 */
 /*!****************************************!*\
   !*** ./~/redux-logger/lib/defaults.js ***!
   \****************************************/
@@ -25506,6 +25536,88 @@
 	  transformer: undefined
 	};
 	module.exports = exports["default"];
+
+/***/ },
+/* 227 */
+/*!******************************************!*\
+  !*** ./src/app/reducers/mathReducer.jsx ***!
+  \******************************************/
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+	
+	var mathReducer = function mathReducer() {
+	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+	        result: 1,
+	        lastValue: []
+	    };
+	    var action = arguments[1];
+	
+	    switch (action.type) {
+	        case "ADD":
+	            state = _extends({}, state, {
+	                result: state.result + action.payload,
+	                lastValue: [].concat(_toConsumableArray(state.lastValue), [action.payload])
+	            });
+	            break;
+	        case "SUBTRACT":
+	            state = _extends({}, state, {
+	                result: state.result - action.payload,
+	                lastValue: [].concat(_toConsumableArray(state.lastValue), [action.payload])
+	
+	            });
+	            break;
+	    }
+	    return state;
+	};
+	
+	exports.default = mathReducer;
+
+/***/ },
+/* 228 */
+/*!******************************************!*\
+  !*** ./src/app/reducers/userReducer.jsx ***!
+  \******************************************/
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var userReducer = function userReducer() {
+	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+	        name: "Swati",
+	        age: 22
+	    };
+	    var action = arguments[1];
+	
+	    switch (action.type) {
+	        case "SET_NAME":
+	            state = _extends({}, state, {
+	                name: action.payload
+	            });
+	            break;
+	        case "SET_AGE":
+	            state = _extends({}, state, {
+	                age: action.payload
+	            });
+	            break;
+	    }
+	    return state;
+	};
+	exports.default = userReducer;
 
 /***/ }
 /******/ ]);
