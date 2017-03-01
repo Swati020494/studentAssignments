@@ -24612,15 +24612,19 @@
 	});
 	exports.setName = setName;
 	exports.setAge = setAge;
-	function setName(number) {
-		return {
-			type: "ADD",
-			payload: name
+	function setName(name) {
+		return function (dispatch) {
+			setTimeout(function () {
+				dispatch({
+					type: "SET_NAME",
+					payload: name
+				});
+			}, 2000);
 		};
 	}
-	function setAge(number) {
+	function setAge(age) {
 		return {
-			type: "SUBTRACT",
+			type: "SET_AGE",
 			payload: age
 		};
 	}
@@ -24644,17 +24648,21 @@
 	
 	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
 	
-	var _mathReducer = __webpack_require__(/*! ./reducers/mathReducer.jsx */ 227);
+	var _reduxThunk = __webpack_require__(/*! redux-thunk */ 227);
+	
+	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
+	
+	var _mathReducer = __webpack_require__(/*! ./reducers/mathReducer.jsx */ 228);
 	
 	var _mathReducer2 = _interopRequireDefault(_mathReducer);
 	
-	var _userReducer = __webpack_require__(/*! ./reducers/userReducer.jsx */ 228);
+	var _userReducer = __webpack_require__(/*! ./reducers/userReducer.jsx */ 229);
 	
 	var _userReducer2 = _interopRequireDefault(_userReducer);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	exports.default = (0, _redux.createStore)((0, _redux.combineReducers)({ math: _mathReducer2.default, user: _userReducer2.default }), {}, (0, _redux.applyMiddleware)((0, _reduxLogger2.default)()));
+	exports.default = (0, _redux.createStore)((0, _redux.combineReducers)({ math: _mathReducer2.default, user: _userReducer2.default }), {}, (0, _redux.applyMiddleware)((0, _reduxLogger2.default)(), _reduxThunk2.default));
 
 /***/ },
 /* 221 */
@@ -25539,6 +25547,37 @@
 
 /***/ },
 /* 227 */
+/*!************************************!*\
+  !*** ./~/redux-thunk/lib/index.js ***!
+  \************************************/
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	exports.__esModule = true;
+	function createThunkMiddleware(extraArgument) {
+	  return function (_ref) {
+	    var dispatch = _ref.dispatch,
+	        getState = _ref.getState;
+	    return function (next) {
+	      return function (action) {
+	        if (typeof action === 'function') {
+	          return action(dispatch, getState, extraArgument);
+	        }
+	
+	        return next(action);
+	      };
+	    };
+	  };
+	}
+	
+	var thunk = createThunkMiddleware();
+	thunk.withExtraArgument = createThunkMiddleware;
+	
+	exports['default'] = thunk;
+
+/***/ },
+/* 228 */
 /*!******************************************!*\
   !*** ./src/app/reducers/mathReducer.jsx ***!
   \******************************************/
@@ -25582,7 +25621,7 @@
 	exports.default = mathReducer;
 
 /***/ },
-/* 228 */
+/* 229 */
 /*!******************************************!*\
   !*** ./src/app/reducers/userReducer.jsx ***!
   \******************************************/
