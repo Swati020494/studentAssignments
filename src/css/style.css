@@ -6,8 +6,21 @@
   padding-bottom: 0px;
 
 }
+.btm{
+margin-bottom: 1px;
+}
+li{
+list-style: none;
+}
+.imgStyle11 {
+  width: 30%;
+  margin-left: 69%; 
+   z-index:100;
+  position: absolute;
+};
 .includeborder{
   border:1px;
+  background-color: black;
 }
 .small-img{
   height: 80px;
