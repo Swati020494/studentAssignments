@@ -1,7 +1,7 @@
 const getDataReducer=(state={
 	jsondataAllfoodGroup:[],
 	jsondataAllfoodItem:[],
-    selectedTab:0
+    selectedTab:0   
 },action)=>{
     console.log("action.type", action.type);
 	switch(action.type){
@@ -27,6 +27,7 @@ const getDataReducer=(state={
         }
             console.log("id", state.selectedTab);
         break;
+        
 }
 return state;
 };

@@ -6,25 +6,45 @@
   padding-bottom: 0px;
 
 }
+#wrapperDiv {
+  width:100%;
+  text-align: center;
+  background-color: #E0E0E0;
+  padding: 1px;
+}
+
 .btm{
 margin-bottom: 1px;
 }
 li{
 list-style: none;
 }
+.img22{
+  width:242px;
+  height:200px;
+}
+.floating-card {
+        float: left;
+          }
+.floating-card1 {
+    display: inline-block;; 
+             }
 .imgStyle11 {
   width: 30%;
   margin-left: 69%; 
    z-index:100;
   position: absolute;
 };
-.includeborder{
-  border:1px;
-  background-color: black;
+.includeborder1{
+  border:1px solid;
 }
 .small-img{
   height: 80px;
   width:180px;
+}
+.med-img{
+  height: 10%;
+  width:10%;
 }
 .dropbtn{
   cursor: pointer;
@@ -62,6 +82,10 @@ a {
 }
 .btn1{
   float: left;
+}
+.btn10{
+  float: left;
+  width:20%;
 }
 .lbl{
   font-size:22px;

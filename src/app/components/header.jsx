@@ -3,16 +3,14 @@ import { Button } from 'react-bootstrap';
 import { Glyphicon } from 'react-bootstrap';
 import { ButtonToolbar, Label,NavDropdown,MenuItem,Collapse} from 'react-bootstrap';
 import {Card,CardImg,CardBlock,CardTitle,CardSubtitle,CardText} from 'reactstrap';
+import {Link} from 'react-router';
 var imgStyle11 = {
-right:0,
+  right:0,
   zIndex:100,
   position: "absolute",
   backgroundColor:"#f1f1f1",
   float:"right"
 };
-var menuStyle={
-
-}
 class Header extends React.Component {
 constructor(props) {
   super(props);
@@ -22,7 +20,7 @@ constructor(props) {
 }
 componentWillReceiveProps(nextProps) {
     this.props = nextProps;
-    console.log("new props-->", nextProps);
+    console.log("this.props.cart-->", this.props.cart, this.props.count);
 }
      render(){
       var obj=this
@@ -36,7 +34,7 @@ componentWillReceiveProps(nextProps) {
                 <Collapse  style={imgStyle11} in={this.state.open} >
                   <div > 
                     {this.props.cart.map(function(jdata,i) {
-                       return(<div className=".btm"><Card block>
+                       return(<div className=".btm"><Card >
                         <CardImg src={jdata.item.food_item_pic} className="small-img"></CardImg>
                         <CardBlock>
                         <CardTitle>{jdata.item.food_item_name} </CardTitle>
@@ -55,6 +53,8 @@ componentWillReceiveProps(nextProps) {
                         );
 
                     })}
+      &nbsp;<p><Button ><Link to ="/checkout">Proceed To Checkout</Link></Button></p>
+
           </div>
         </Collapse> 
             </Button>

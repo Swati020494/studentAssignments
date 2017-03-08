@@ -7,7 +7,6 @@ export function getDataFoodGroup(url){
 			})
   	};
 }
-
 export function getDataFoodItem(url){
 	return{
 		type:"GET_DATA_FOOD_ITEM",

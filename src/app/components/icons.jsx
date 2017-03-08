@@ -2,6 +2,7 @@ import React from 'react';
 import { Col,Row } from 'react-bootstrap';
 import { Button, Grid } from 'react-bootstrap';
 import { Glyphicon,Thumbnail } from 'react-bootstrap';
+import ImageLoader from 'react-imageloader';
 
 class Icons extends React.Component{
 	 constructor(props){

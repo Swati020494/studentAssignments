@@ -5,14 +5,25 @@ import {getDataFoodGroup,getDataFoodItem,setDataFoodGroupId} from '../actions/ge
 import {addToCart,deleteFromCart,addToQuantity} from '../actions/userActions.jsx'
 import OptionTab from '../components/tabs.jsx'
 import Icons from '../components/icons.jsx'
+import {store} from "../store.jsx";
+
 class App extends React.Component {
     componentWillMount() {
         this.props.getDataFoodGroup("http://ec2-54-165-240-14.compute-1.amazonaws.com:3000/api/foodGroup");
         this.props.getDataFoodItem("http://ec2-54-165-240-14.compute-1.amazonaws.com:3000/api/foodItem");
         
+        
     }
     componentDidMount() {
       console.log("in mount: ",this.props.data.jsondataAllfoodGroup);  
+    }
+    componentWillUnmount() {
+
+     
+    localStorage.setItem('count', this.props.user.count);
+    localStorage.setItem('total', this.props.user.total);
+    localStorage.setItem('foodInCart', JSON.stringify(this.props.user.foodInCart))
+
     }
 
     componentWillReceiveProps(nextProps) {
@@ -24,7 +35,7 @@ class App extends React.Component {
         console.log('-------------', this.props.data);
       return (
          <div>
-         <Header cart={this.props.user.foodInCart} count={this.props.user.count} delete={this.props.deleteFromCart} increase={this.props.addToQuantity}/>
+         <Header cart={this.props.user.foodInCart} count={this.props.user.count} delete={this.props.deleteFromCart} increase={this.props.addToQuantity}/>{this.props.children}
          <OptionTab groups={this.props.data.jsondataAllfoodGroup} select={(key)=>this.props.setDataFoodGroupId(key)} selectedId={this.props.data.selectedTab}/> 
          <Icons selectedId={this.props.data.selectedTab}  groups={this.props.data.jsondataAllfoodGroup} items={this.props.data.jsondataAllfoodItem}  addToCart={(item)=>this.props.addToCart(item)} /> 
          </div>
@@ -55,7 +66,17 @@ const mapDispatchToProps=(dispatch)=>{
         },
         addToQuantity:(id)=>{
             dispatch(addToQuantity(id));
-        }
+        },
+        getCartFromCookie:()=>{
+            dispatch(getCartFromCookie());
+        },
+        getCountFromCookie:()=>{
+            dispatch(getCountFromCookie());
+        },
+        getTotalFromCookie:()=>{
+            dispatch(getTotalFromCookie());
+        },
+
     };
 };
 
